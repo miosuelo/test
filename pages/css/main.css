@@ -35,6 +35,12 @@
     top: calc(50% - 10px); /* 50% - 3/4 of icon height */
 }
 
+
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
 .autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;

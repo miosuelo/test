@@ -83,7 +83,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                     </li>
                 <?php } ?>
             </ul>
-            <form class=" mx-auto  col-sm-8" action="../pages/searchpage.php" method="post">
+            <form class=" mx-auto  col-sm-8" autocomplete="off" action="../pages/searchpage.php" method="post">
                 <div class="row d-flex justify-content-end">
                     <div class="col-sm input-group  my-3 mx-sm-1">
                         <span class="input-group-text" id="basic-addon1">Desde</span>

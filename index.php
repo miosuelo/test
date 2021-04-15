@@ -41,7 +41,7 @@
                     <div class="rojas-container">
                         <div class="row c-row">
                             <div class="col-sm-2 col-xs-6">
-                                <div id="active-logo"><a href="index.php"> <img width="300" src="images/definitivoSVGMAS%20CHICO-01.svg"></a></div>
+                                <div id="active-logo"><a href="index.php"> <img width="300" src="images/DERECHITAS-01.svg"></a></div>
                             </div>
                             <div class="text-end menu-1 main-nav">
 
@@ -341,7 +341,7 @@
                                         <div class="rojas-accordion-content">
                                             <div class="inner">
 
-                                                <p>Nosotros siempre ponemos a dispocición nuestras politicas para todo aquel que quiera conocer a profundidad nuestros metodos de trabajo.</p>
+                                                <p>Nosotros siempre ponemos a dispocición nuestras politicas, para todo aquel, que quiera conocer a profundidad nuestros metodos de trabajo.</p>
                                                 <p class="text-end"><a href="descargas/POLITICAS.pdf" download="Politicas Empresariales Transportes Rojas.pdf"><b>Descargar</b></a></p>
                                             </div>
                                         </div>
@@ -370,7 +370,7 @@
                                         </div>
                                         <div class="rojas-accordion-content">
                                             <div class="inner">
-                                                <p>SI ESTAS INTERASADO EN POSTULAR AUN CARGO EN NUESTRA ORGANIZACION ENVIANOS UN CORREO A: <a style="text-decoration: none" href="mailto:recepcion@transrojas.cl">recepcion@transrojas.cl</a>
+                                                <p>SI ESTAS INTERASADO EN POSTULAR A UN CARGO EN NUESTRA ORGANIZACION ENVIANOS UN CORREO A: <a style="text-decoration: none" href="mailto:recepcion@transrojas.cl">recepcion@transrojas.cl</a>
                                             </div>
                                         </div>
                                     </div>

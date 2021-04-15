@@ -17,9 +17,9 @@
 <?php
 session_start();
 
-require("../clases/usuario.php");
 
-require("headeradmin.php");
+
+require("header.php");
 
 $u = unserialize($_SESSION['usuario']);
 

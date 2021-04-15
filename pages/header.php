@@ -97,18 +97,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                                name="fecha" id="date">
                     </div>
                     <div class="col-sm my-3 mx-sm-1">
-                        <select class="form-select mx-auto col "   name="patente" id="inputGroupSelect01">
-                            <?php
-                            while (($res = mysqli_fetch_assoc($veTipo)) != null) {
-                                ?>
-                                <option> <?php echo $res["v_tipo"]; ?> </option>
-
-                                <?php
-                            }
-
-                            ?>
-
-                        </select>
+                        <input id="buscar" type="text"  class="form-control">
 
                     </div>
 

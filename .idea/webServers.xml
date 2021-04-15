@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ed3127df-356a-422d-a90c-cba3cb254f3f" name="hosting" url="http://ftp.transportesrojasoperaciones.cl/">
+        <fileTransfer host="ftp.transportesrojasoperaciones.cl" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

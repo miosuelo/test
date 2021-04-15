@@ -97,7 +97,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                                name="fecha" id="date">
                     </div>
                     <div class="col-sm my-3 mx-sm-1">
-                        <input id="buscar" type="text"  class="form-control">
+                        <input id="buscar" type="text" name="patente" class="form-control">
 
                     </div>
 

@@ -4,10 +4,10 @@
 class Conect
 {
 
-    private $usuario = "trojas";
-    private $contrasena = "trojas";
+    private $usuario = "root";
+    private $contrasena = "";
     private $servidor = "localhost";
-    private $basededatos = "itrojas";
+    private $basededatos = "trojas";
     private $mysqli;
 
     public function __construct()

@@ -96,7 +96,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                         <input class="form-control mx-auto col " VALUE="<?php echo date('Y-m-d') ?>" type="date"
                                name="fecha" id="date">
                     </div>
-                    <div class="col-sm my-3 mx-sm-1">
+                    <div class="col-sm my-3 mx-sm-1 autocomplete">
                         <input id="buscar" type="text" name="patente" class="form-control">
 
                     </div>

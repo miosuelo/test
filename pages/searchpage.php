@@ -22,8 +22,7 @@ include('../pages/header.php');
 $cone = new Conect();
 
 
-$desde = $_POST["fecha1"];
-$hasta = $_POST["fecha"];
+
 $pat = $_POST["patente"];
 
 $busqueda = $cone->select("
@@ -31,7 +30,7 @@ select a_articulo, f_id,u_nombre,f_date,s_patente,s_tipo,v_tipo,v_patente
 from formulario f, semiremolque s, usuario u, pregunta p, formulario_has_pregunta fp, articulo a, vehiculo V
 where s.s_id=f.s_id and s_patente='$pat' 
   and fp.preguntas_p_id = p.p_id and fp.formulario_f_id = f.f_id and p.a_id = a.a_id
-  and u.u_id=f.u_id and f_date >= CAST('$desde' AS DATE) AND f_date <= CAST('$hasta' AS DATE)  GROUP BY f_id");
+  and u.u_id=f.u_id  GROUP BY f_id");
 
 ?>
 

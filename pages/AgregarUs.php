@@ -11,7 +11,7 @@ $usuario = unserialize($_SESSION["usuario"]);
 $uid = $usuario->getRut();
 date_default_timezone_set("America/Santiago");
 $new_date = date('Y-m-d');
-$query = "INSERT into usuario(u_id, u_nombre, u_contrasena, u_jerarquia, admin, ingreso) VALUES ('$rut', '$nombre','$contrasena','$jerarquia','$uid','$new_date')";
+$query = "INSERT into usuario(u_id, u_nombre, u_contrasena, u_jerarquia, u_admin, u_timestamp) VALUES ('$rut', '$nombre','$contrasena','$jerarquia','$uid','$new_date')";
 $result = mysqli_query($con->conchet(), $query);
 
 if (!$result) {

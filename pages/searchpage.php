@@ -14,10 +14,7 @@
 <body background="">
 <?php
 session_start();
-
 //include("../conex/conect.php");
-
-
 include('../pages/header.php');
 $cone = new Conect();
 date_default_timezone_set('UTC');
@@ -32,16 +29,13 @@ where f.f_id = shv.formulario_f_id and s_patente='$pat' and shv.semiremolque_s_i
 ?>
 
 <div class="container-fluid">
-
     <div class="alert alert-danger d-none" id="errorDate" role="alert">
-
     </div>
     <div class="row">
         <div class="col-sm input-group   my-3 mx-sm-1">
             <span class="input-group-text" id="basic-addon1">Desde</span>
             <input class="form-control mx-auto desdeHasta " VALUE="" type="date"
                    name="fecha1" id="inpDesde">
-
         </div>
         <div class="col-sm input-group  my-3 mx-sm-1">
             <span class="input-group-text" id="basic-addon1">Hasta</span>
@@ -91,25 +85,16 @@ where f.f_id = shv.formulario_f_id and s_patente='$pat' and shv.semiremolque_s_i
                                 <div class="modal-body" id="exampleBodyModal<?php echo $contador ?>">
                                     <div class="container-fluid ">
                                         <?php
-
                                         while (($pregunta = mysqli_fetch_assoc($preguntas)) != null) { ?>
-
-
                                             <div class="row border text-center align-items-center justify-content-center rounded py-2  my-2">
-
                                                 <label for="staticEmail"
                                                        class="col-sm-4 mx-auto col-form-label pregunta">     <?php echo $pregunta["p_titulo"] ?> </label>
-
                                                 <div class="col-sm-8 mx-auto">
                                                     <input type="text" class="pregunta form-control" disabled
                                                            value="<?php echo $pregunta["r_respuesta"] ?>">
-
                                                 </div>
-
                                             </div>
-
                                             <?php
-
                                         }
                                         ?>
                                         <div id="especial"></div>
@@ -119,7 +104,6 @@ where f.f_id = shv.formulario_f_id and s_patente='$pat' and shv.semiremolque_s_i
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <?php
@@ -139,7 +123,5 @@ where f.f_id = shv.formulario_f_id and s_patente='$pat' and shv.semiremolque_s_i
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
-
-
 </body>
 </html>

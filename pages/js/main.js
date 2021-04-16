@@ -1,5 +1,42 @@
 $(document).ready(function () {
+    var now = new Date();
 
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    $("#inpDesde").val(today)
+    $("#inpHasta").val(today)
+    $(".desdeHasta").change(function () {
+        var desde = new Date();
+        desde.setTime(Date.parse($("#inpDesde").val().toString().replace(/-/g, '\/')));
+        var hasta = new Date();
+        hasta.setTime(Date.parse($("#inpHasta").val().toString().replace(/-/g, '\/')));
+
+        if (desde > hasta) {
+            $("#errorDate").html("Fecha <b>Desde</b> debe ser menor a la fecha <b>Hasta</b>");
+            $("#errorDate").removeClass("d-none");
+        } else {
+            var hoy = new Date();
+
+            if (hasta > hoy) {
+                $("#errorDate").html("Fecha <b>Hasta</b> debe ser menor a la fecha <b>actual </b>");
+                $("#errorDate").removeClass("d-none");
+            } else {
+                $("#errorDate").addClass("d-none");
+                $(".fecha").each(function () {
+                    var fecha = new Date($(this).text().replace(/-/g, '\/'));
+
+                    if (fecha >= desde && fecha <= hasta) {
+
+                        $(this).parent("p").parent("div").parent("div").show()
+                    } else {
+                        $(this).parent("p").parent("div").parent("div").hide()
+                    }
+                });
+            }
+        }
+    });
     console.log("ready");
     iniciale();
 
@@ -61,11 +98,6 @@ $(document).ready(function () {
     }
 
 
-
-
-
-
-
 });
 
 
@@ -81,19 +113,17 @@ function clickEditar(boton) {
     };
 
 
-
     $.ajax({
         method: "POST",
         data: editale,
         url: "EditUs.php",
         success: function (msg) {
-           alert("" + msg);
+            alert("" + msg);
 
 
         }
 
     })
-
 
 
     return false;

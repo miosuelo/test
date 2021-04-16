@@ -86,7 +86,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
             <form class=" mx-auto  col-sm-8" autocomplete="off" action="../pages/searchpage.php" method="post">
                 <div class="row d-flex justify-content-end">
 
-                    <div class="col-sm-5 my-3 mx-sm-1 autocomplete">
+                    <div class="col-sm-6 my-3 mx-sm-1 autocomplete">
                         <input id="buscar" type="text" name="patente" placeholder="Ingrese patente semiremolque" class="form-control">
 
                     </div>

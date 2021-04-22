@@ -83,36 +83,15 @@ $jerarquia = $usuarioHeader->getJerarquia();
                     </li>
                 <?php } ?>
             </ul>
-            <form class=" mx-auto  col-sm-8" action="../pages/searchpage.php" method="post">
+            <form class=" mx-auto  col-sm-8" autocomplete="off" action="../pages/searchpage.php" method="post">
                 <div class="row d-flex justify-content-end">
-                    <div class="col-sm input-group  my-3 mx-sm-1">
-                        <span class="input-group-text" id="basic-addon1">Desde</span>
-                        <input class="form-control mx-auto " VALUE="<?php echo date('Y-m-d') ?>" type="date"
-                               name="fecha1" id="date">
 
-                    </div>
-                    <div class="col-sm input-group  my-3 mx-sm-1">
-                        <span class="input-group-text" id="basic-addon1">Hasta</span>
-                        <input class="form-control mx-auto col " VALUE="<?php echo date('Y-m-d') ?>" type="date"
-                               name="fecha" id="date">
-                    </div>
-                    <div class="col-sm my-3 mx-sm-1">
-                        <select class="form-select mx-auto col "   name="patente" id="inputGroupSelect01">
-                            <?php
-                            while (($res = mysqli_fetch_assoc($veTipo)) != null) {
-                                ?>
-                                <option> <?php echo $res["v_tipo"]; ?> </option>
-
-                                <?php
-                            }
-
-                            ?>
-
-                        </select>
+                    <div class="col-sm-6 my-3 mx-sm-1 autocomplete">
+                        <input id="buscar" type="text" name="patente" placeholder="Ingrese patente semiremolque" class="form-control">
 
                     </div>
 
-                    <button type="submit" class=" col-sm my-3 mx-sm-1 btn btn-primary bi bi-search ">
+                    <button type="submit" class=" col-sm-2 my-3 mx-sm-1 btn btn-primary bi bi-search ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                              class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>

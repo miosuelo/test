@@ -32,9 +32,12 @@ foreach ($_POST as $key => $value) {
 date_default_timezone_set("America/Santiago");
 $new_date = date('Y-m-d');
 echo $formulario["id"];
-$con->select("INSERT INTO formulario ( f_id,f_date, f_estado, f_tipo, u_id,s_id) VALUES (".$formulario["id"].",'$new_date', 1, '1', '$supervisor', $semirr)");
-
-$con->select("INSERT INTO s_has_v (semiremolque_s_id, vehiculo_v_id) VALUES($semirr, $vehiculo) ");
+echo "<br>";
+$con->select("INSERT INTO formulario ( f_id,f_date, f_estado, f_tipo, u_id) VALUES (".$formulario["id"].",'$new_date', 1, '1', '$supervisor')");
+echo "INSERT INTO formulario ( f_id,f_date, f_estado, f_tipo, u_id) VALUES (".$formulario["id"].",'$new_date', 1, '1', '$supervisor'";
+echo "<br>";
+echo "INSERT INTO s_has_v (semiremolque_s_id, vehiculo_v_id, formulario_f_id) VALUES($semirr, $vehiculo,". $formulario["id"].") ";
+$con->select("INSERT INTO s_has_v (semiremolque_s_id, vehiculo_v_id, formulario_f_id) VALUES($semirr, $vehiculo,". $formulario["id"].") ");
 //respuestas for
 
 for ($i = 0; $i < count($preguntas); $i++) {

@@ -4,10 +4,10 @@
 class Conect
 {
 
-    private $usuario = "root";
-    private $contrasena = "";
+    private $usuario = "trojas";
+    private $contrasena = "trojas";
     private $servidor = "localhost";
-    private $basededatos = "trojas";
+    private $basededatos = "itrojas";
     private $mysqli;
 
     public function __construct()
@@ -28,10 +28,12 @@ class Conect
             if ($this->mysqli->query($query) === TRUE) {
 
             } else {
-                echo "Error: " . $query . "<br>" . $this->mysqli->error;
+                die( "Error: " . $query . "<br>" . $this->mysqli->error);
             }
         }else{
-            $retorno = $this->mysqli->query($query);
+
+            $retorno = $this->mysqli->query($query) or die($this->mysqli->error);
+
         }
 
         return $retorno;

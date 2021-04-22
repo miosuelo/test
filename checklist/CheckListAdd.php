@@ -165,7 +165,7 @@ from formulario;")->fetch_assoc();
 
             ?>
             <tr>
-                <td scope="col" class="text-start" type=""><?php echo utf8_decode($res['p_titulo']); ?> <input
+                <td scope="col" class="text-start" type=""><?php echo utf8_encode($res['p_titulo']); ?> <input
                             name="pregunta<?php echo $contador ?>" class="d-none" value="<?php echo $res['p_id'] ?>">
                 </td>
                 <?php if ($res['p_tipo'] == 'M' && $res['a_articulo'] != 'ESTIBA') { ?>

@@ -22,8 +22,8 @@ date_default_timezone_set('UTC');
 $pat = $_POST["patente"];
 
 $busqueda = $cone->select("select a_articulo, f_id,u_nombre,f_date,s_patente,s_tipo,v_tipo,v_patente
-from formulario f, semiremolque s, usuario u, pregunta p, formulario_has_pregunta fp, articulo a, vehiculo V, s_has_v shv
-where f.f_id = shv.formulario_f_id and s_patente='$pat' and shv.semiremolque_s_id = s.s_id and shv.vehiculo_v_id = v.v_id
+from formulario f, semiremolque s, usuario u, pregunta p, formulario_has_pregunta fp, articulo a, vehiculo v, s_has_v shv
+where f.f_id = shv.formulario_f_id and s_patente like'$pat' and shv.semiremolque_s_id = s.s_id and shv.vehiculo_v_id = v.v_id
   and fp.preguntas_p_id = p.p_id and fp.formulario_f_id = f.f_id and p.a_id = a.a_id
   and u.u_id=f.u_id  GROUP BY f_id");
 ?>

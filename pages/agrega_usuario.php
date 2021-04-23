@@ -7,16 +7,22 @@
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css" rel="stylesheet"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 </head>
 <body>
 <?php
 session_start();
-
 
 
 require("header.php");
@@ -30,7 +36,7 @@ if ($u->getJerarquia() > 2) {
     <div class="container-fluid">
 
         <form action="" method="POST" id="AgregarU">
-            <table class="table table-primary table-responsive table-bordered mt-2">
+            <table class="table table-striped mt-2">
                 <thead class="table-dark">
                 <tr>
                     <th scope="col">Rut</th>
@@ -43,13 +49,12 @@ if ($u->getJerarquia() > 2) {
                 <tbody>
                 <tr>
 
-                    <td><input type="text" class="form-control" id="Rut"  maxlength="11" required></td>
+                    <td><input type="text" class="form-control" onkeyup="guionRut(this)" id="inpUsuarioRut" maxlength="15" required></td>
                     <td><input type="text" pattern="[a-zA-Z ]{2,25}" class="form-control" id="Nombre" required></td>
                     <td><input type="text" class="form-control" id="Contrasena" required></td>
-                    <td><select class="form-select mx-auto col "   name="patente" id="Jerarquia">
+                    <td><select class="form-select mx-auto col " name="patente" id="Jerarquia">
                             <option value="1">Usuario</option>
                             <option value="3">Administrador</option>
-
 
 
                         </select>
@@ -62,21 +67,17 @@ if ($u->getJerarquia() > 2) {
         </form>
 
 
-        <table class="table table-striped table-responsive table-bordered">
-            <thead class="table-dark">
+        <table id="userTable" class="table table-bordered table-responsive display responsive  nowrap table-striped">
+            <thead class="bg-dark text-white">
             <tr>
-                <th scope="col">Rut</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Jerarquia</th>
-                <th scope="col">Editar</th>
-
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Contraseña</th>
+                <th>Jerarquia</th>
+                <th>Editar</th>
+                <th>Estado</th>
             </tr>
             </thead>
-            <tbody id="cuerpin">
-
-
-            </tbody>
         </table>
 
     </div>
@@ -92,6 +93,7 @@ if ($u->getJerarquia() > 2) {
 
 } ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
@@ -99,6 +101,19 @@ if ($u->getJerarquia() > 2) {
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
 <script src="js/main.js"></script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.24/af-2.3.5/b-1.7.0/b-colvis-1.7.0/b-html5-1.7.0/b-print-1.7.0/cr-1.5.3/date-1.0.3/fc-3.3.2/fh-3.1.8/kt-2.6.1/r-2.2.7/rg-1.1.2/rr-1.2.7/sc-2.0.3/sb-1.0.1/sp-1.2.2/sl-1.3.3/datatables.min.js"></script>
+
 </body>
 </html>
 

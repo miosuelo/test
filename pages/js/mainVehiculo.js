@@ -1,7 +1,9 @@
 $(document).ready(function () {
     console.log("ready");
+    $(window).resize(function () {
+        iniciale();
+    });
     iniciale();
-
 
 
     $('#AgregarV').submit(function (e) {
@@ -28,30 +30,24 @@ $(document).ready(function () {
 
     function iniciale() {
 
-
+        console.log("iniciale");
         $.ajax({
             url: 'listaVe.php',
             type: 'GET',
             success: function (respuesta) {
+
                 let cuerpin = JSON.parse(respuesta);
-                let template = '';
-                var contador = 0;
-                cuerpin.forEach(cuerpin => {
-                    contador++;
-                    template += `
-        <tr idcosa="${cuerpin.idd}">
-            <td><input class="form-control" type="text" id="inpId${contador}" disabled="true"  value="${cuerpin.id}"></td>
-            <td><input class="form-control" type="text" id="inpTipo${contador}"   value="${cuerpin.tipo}"></td>
-            <td><input class="form-control" type="text" id="inpPatente${contador}"  value="${cuerpin.patente}"></td>
-           
-            <td>
-            <button class="editing btn btn-warning " numeroFila="${contador}" type="" onclick="clickEditar(this)"  >Editar</button>
-            </td>
-        </tr>
-         `
-                    contador++;
-                });
-                $('#cuerpin').html(template);
+
+                $("#vehicleTable").DataTable().destroy();
+                $("#vehicleTable").DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                    },
+                    "data": cuerpin,
+                    "destroy": true,
+                    "responsive": true,
+                    "searching": false
+                })
             }
 
         })
@@ -69,9 +65,7 @@ function clickEditar(boton) {
         vtip: ($("#inpTipo" + numeroFila).val()),
         vpat: ($("#inpPatente" + numeroFila).val()).toString()
 
-
     };
-
 
 
     $.ajax({
@@ -87,8 +81,43 @@ function clickEditar(boton) {
     })
 
 
-
     return false;
 
 }
 
+function changeState(switchV, row) {
+    var id = $("#inpId" + row).val();
+
+    console.log(id);
+    if ($(switchV).is(':checked')) {
+        const data = {
+            state: 1,
+            id: id
+        }
+        $.ajax({
+            method: "POST",
+            data: data,
+            url: "EditStateVe.php",
+            success: function (msg) {
+
+                console.log(msg)
+
+            }
+        })
+
+    } else {
+        const data = {
+            state: 0,
+            id: id
+        }
+        $.ajax({
+            method: "POST",
+            data: data,
+            url: "EditStateVe.php",
+            success: function (msg) {
+                console.log(msg)
+
+            }
+        })
+    }
+}

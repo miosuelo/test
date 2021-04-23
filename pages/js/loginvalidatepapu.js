@@ -1,45 +1,119 @@
 $(document).ready(function () {
+    console.log("welcome")
+    $("#inputID").keyup(function () {
+        guionRut(this)
+    })
+    $("#formLogin").submit(function () {
 
-    $("#btnLogin").click(function () {
-        var rut = $("#inputID");
-        var pass = $("#inputPass");
+        var rut = $("#inputID").val();
 
-        var drut = $("#login_inpDRut");
 
-        if (drut.val().length == 0) {
-            inputValid(drut, 2, "El rut es un campo obligatorio")
-            retorno = false;
+        rut = rut.toString().replace('.', '');
+        rut = rut.toString().replace('.', '');
+        rut = rut.toString().replace('-', '');
+        console.log(rut)
+        if (Valida_Rut(rut)) {
+            return true
         } else {
-            inputValid(drut, 1, "")
-            retorno = true;
-        }
-        if (rut.val().length == 0) {
-            inputValid(rut, 2, "El rut es un campo obligatorio")
-            retorno = false;
-        } else {
-            inputValid(rut, 1, "")
-            retorno = true;
-            if (Valida_Rut(rut.val() + drut.val())) {
-                inputValid(rut, 2, "")
-                inputValid(drut, 2, "Rut invalido")
-                retorno = false;
-            } else {
-                inputValid(rut, 1, "")
-                inputValid(drut, 1, "");
-                retorno = true;
-            }
+            alert("Rut invalido")
+
         }
 
-
-        if (pass.val().length == 0) {
-            inputValid(pass, 2, "La contraseña es un campo obligatorio")
-            retorno = false;
-        } else {
-            inputValid(pass, 1, "");
-            retorno = true;
-        }
-
-        return retorno;
-
+        return false;
     })
 });
+
+function guionRut(objeto) {
+    var rut = $(objeto).val();
+    if (rut.length > 2) {
+        const newRut = rut.replace(/\./g, '').replace(/\-/g, '').trim().toLowerCase();
+        const lastDigit = newRut.substr(-1, 1);
+        const rutDigit = newRut.substr(0, newRut.length - 1)
+        let format = '';
+        for (let i = rutDigit.length; i > 0; i--) {
+            const e = rutDigit.charAt(i - 1);
+            format = e.concat(format);
+            if (i % 3 === 0) {
+                format = '.'.concat(format);
+            }
+        }
+        $(objeto).val(format.concat('-').concat(lastDigit));
+    }
+
+
+}
+
+
+function Valida_Rut(Objeto) {
+    try {
+        Objeto = Objeto.replaceAll(".", "");
+        if (Objeto.length < 6) {
+            return false;
+        }
+
+        Objeto.substr(0, Objeto.length - 1);
+
+        var cuerpoRut = Objeto.substr(0, Objeto.length - 1);
+        var digitoRut = Objeto.substr(Objeto.length - 1, Objeto.length);
+
+        var cuerpoRutInvers = "";
+
+
+        for (var i = cuerpoRut.length; i >= 0; i--) {
+            cuerpoRutInvers += cuerpoRut.charAt(i);
+        }
+
+
+        var suma = 0;
+        var contador = 0;
+
+
+        for (var i = 2; contador < cuerpoRutInvers.length; i++) {
+
+            var numero = cuerpoRutInvers.charAt(contador);
+
+            suma = suma + i * numero;
+
+            contador++;
+            if (i == 7) {
+                i = 1;
+            }
+
+
+        }
+        console.log("Suma: " + suma)
+
+
+        var division = Math.floor(suma / 11);
+
+
+        var resultado = suma - (11 * division);
+
+
+        resultado = 11 - resultado;
+
+
+        var digitoResultado = "";
+        if (resultado == 11) {
+            digitoResultado = "0";
+        }
+        if (resultado == 10) {
+            digitoResultado = "K";
+        }
+
+        if (resultado != 11 && resultado != 10) {
+            digitoResultado = resultado;
+        }
+
+
+        if (digitoResultado.toString().toUpperCase() == digitoRut.toUpperCase()) {
+            return true;
+        } else {
+            return false
+
+        }
+    } catch (error) {
+        console.log(error)
+        return false;
+    }
+}

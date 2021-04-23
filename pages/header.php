@@ -52,12 +52,12 @@ $jerarquia = $usuarioHeader->getJerarquia();
                 </li>
                 <?php if ($jerarquia > 2) { ?>
                     <li class="nav-item   dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="" id="navbarDropdown" role="button"
+                        <a class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown" href="" id="navbarDropdown" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             Administracion
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown ">
-                            <li>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item">
                                 <button type="button" name="usuarios" class="dropdown-item"
                                         onclick="location.href='../pages/agrega_usuario.php'"> Usuarios
                                 </button>
@@ -65,7 +65,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li>
+                            <li class="dropdown-item">
                                 <button type="button" name="vehiculos" class="dropdown-item"
                                         onclick="location.href='../pages/agrega_vehiculo.php'"> Vehiculos
                                 </button>
@@ -73,7 +73,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li>
+                            <li class="dropdown-item">
                                 <button type="button" name="semirremolque" class="dropdown-item"
                                         onclick="location.href='../pages/agrega_semirremolque.php'"> Semirremolque
                                 </button>

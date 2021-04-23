@@ -19,36 +19,36 @@
 </head>
 <body>
 
-<div class="container" >
+<div class="container">
     <img class="rounded mx-auto d-block" src="../imagenes/logo rojas definitivo.bmp" width="60%">
 </div>
 <div class="container">
     <div class="row">
-        <?php /*session_start();
+        <?php session_start();
         if (isset($_SESSION["error"])) {
 
             ?>
-            <div class="alert alert-danger fw-bold text-center col" role="alert">
+            <div class="alert form-group alert-danger d-flex justify-content-center fw-bold text-center col-12 " role="alert">
                 <?php echo $_SESSION["error"] ?>
             </div>
             <?php
 
-            unset($_SESSION["error"]);
+            //unset($_SESSION["error"]);
 
 
-        } */?>
-        <form class="form-horizontal" action="logicalogin.php" method="post">
-            <div class="form-group">
+        }  ?>
+        <form class="form-horizontal align-content-center col-8 mx-auto " id="formLogin" action="logicalogin.php" method="post">
+
+            <div class="form-group mx-auto">
                 <label for="userid" class="col-sm-2 control-label mt-1"><b>Usuario</b></label>
                 <div class="col-sm-10">
-                    <input type="int" class="form-control" name="login" id="inputID" placeholder="Usuario" >
+                    <input type="int" class="form-control" name="login" id="inputID" placeholder="Usuario">
 
                 </div>
 
 
-
             </div>
-            <div class="form-group">
+            <div class="form-group mx-auto">
                 <label for="inputpass" class="col-sm-2 control-label mt-1"><b>Contraseña</b></label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" name="password" id="inputPass" placeholder="Contraseña"
@@ -63,13 +63,18 @@
         </form>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"
         integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
+
+
 <script src="js/loginvalidatepapu.js"></script>
+
 </body>
+
 
 </html>

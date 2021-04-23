@@ -7,7 +7,7 @@ class Conect
     private $usuario = "trojas";
     private $contrasena = "trojas";
     private $servidor = "localhost";
-    private $basededatos = "itrojas";
+    private $basededatos = "trans151_itrojas";
     private $mysqli;
 
     public function __construct()

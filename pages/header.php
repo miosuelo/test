@@ -24,6 +24,7 @@ $jerarquia = $usuarioHeader->getJerarquia();
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
         </div>
         <div class="collapse  navbar-collapse mx-auto col-sm-10 row" id="navbarSupportedContent">
             <ul class="navbar-nav my-2 mx-auto col-sm-4">

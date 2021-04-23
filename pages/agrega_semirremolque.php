@@ -26,9 +26,9 @@ session_start();
 
 
 require("header.php");
-
+$cone = new Conect();
 $u = unserialize($_SESSION['usuario']);
-
+$articulos = $cone->select("select a_articulo  from articulo");
 if ($u->getJerarquia() > 2) {
 
 
@@ -49,9 +49,26 @@ if ($u->getJerarquia() > 2) {
                 <tbody>
                 <tr>
 
-                    <td><input type="text" pattern="[a-zA-Z ]{2,25}" class="form-control" id="Tipo" required></td>
+                    <td>
+                        <select class="form-select" id="Tipo">
+                            <?php
+                            while (($res = mysqli_fetch_assoc($articulos)) != null) {
+                                if ($res["a_articulo"] != "ELEMENTOS AMARRE"){
+                                ?>
+                                <option value=" <?php echo $res["a_articulo"] ?>">
+                                    <?php echo $res["a_articulo"] ?>
+                                </option>
+                                <?php
+                                }
+                            }
+
+                            ?>
+                        </select>
+
                     <td><input type="text" class="form-control" id="Patente" required></td>
-                    <td class="text-center"><button type="submit" class="btn bg-success text-white " id="agregar">Agregar</button></td>
+                    <td class="text-center">
+                        <button type="submit" class="btn bg-success text-white " id="agregar">Agregar</button>
+                    </td>
 
                 </tr>
                 </tbody>

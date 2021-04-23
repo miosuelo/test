@@ -27,11 +27,11 @@ include('../pages/header.php');
 
 $usuario = unserialize($_SESSION["usuario"]);
 $cone = new Conect();
-
-$camabaja =( $cone->select("SELECT p_id, p_titulo, p_tipo,a_articulo from pregunta p , articulo a where a.a_id = p.a_id and a.a_id = $id order by p_id asc;"));
+$validador = 0;
+$camabaja = ($cone->select("SELECT p_id, p_titulo, p_tipo,a_articulo from pregunta p , articulo a where a.a_id = p.a_id and a.a_id = $id order by p_id asc;"));
 $titulo = $cone->select("select a_articulo  from articulo where a_id = $id")->fetch_assoc();
-$veTipo = $cone->select("select v_id, v_patente from vehiculo");
-$veTipo2 = $cone->select("select s_id, s_patente from semiremolque");
+$veTipo = $cone->select("select v_id, v_patente from vehiculo where v_estado = 1");
+$veTipo2 = $cone->select("select s_id, s_patente from semiremolque where s_estado = 1 and s_tipo = '" . $titulo["a_articulo"] . "'");
 $idFormularo = $cone->select("select CASE WHEN (max(f_id)+1) = 0 THEN 1
     ELSE max(f_id)+1
 END
@@ -39,62 +39,73 @@ END
 from formulario;")->fetch_assoc();
 
 
-
 ?>
 
 <div class="container-fluid mb-2">
     <form method="post" action="logicaCheckListAdd.php">
         <div class="row my-2">
-                 <div class="col-sm-4 mx-auto">
+            <div class="col-sm-4 mx-auto">
                 <div class="row">
                     <div class="input-group mb-3">
-                    <span class="input-group-text bg-dark text-white" id="basic-addon1">Supervisor:</span>
+                        <span class="input-group-text bg-dark text-white" id="basic-addon1">Supervisor:</span>
 
-                    <div class="col-sm-8">
-                        <input class="form-control  " name="" readonly
-                               value="<?php echo $usuario->getNombre(); ?>">
-                        <input class="form-control d-none " name="supervisor" readonly
-                               value="<?php echo $usuario->getRut(); ?>">
+                        <div class="col-sm-8">
+                            <input class="form-control  " name="" readonly
+                                   value="<?php echo $usuario->getNombre(); ?>">
+                            <input class="form-control d-none " name="supervisor" readonly
+                                   value="<?php echo $usuario->getRut(); ?>">
 
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4 mx-auto">
                 <div class="row">
                     <div class="input-group mb-3">
-                    <span class="input-group-text bg-dark text-white" id="basic-addon1">Vehiculo:</span>
+                        <span class="input-group-text bg-dark text-white" id="basic-addon1">Vehiculo:</span>
 
-                    <div class="col-sm-8">
-                        <select class="form-select" name="vehiculo">
-                            <?php while (($res = mysqli_fetch_assoc($veTipo)) != null) {
-                                ?>
+                        <div class="col-sm-8">
+                            <select class="form-select" name="vehiculo">
+                                <?php while (($res = mysqli_fetch_assoc($veTipo)) != null) {
 
-                                <option value="<?php echo $res['v_id'] ?> "><?php echo $res['v_patente'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                                    ?>
+
+                                    <option value="<?php echo $res['v_id'] ?> "><?php echo $res['v_patente'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
+
+
             <div class="col-sm-4 mx-auto">
                 <div class="row">
                     <div class="input-group mb-3">
                         <span class="input-group-text bg-dark text-white " id="basic-addon1">SEMIRREMOLQUE:</span>
 
-                    <div class="col-sm-8">
-                        <select class="form-select" name="semirremolque">
-                            <?php while (($res1 = mysqli_fetch_assoc($veTipo2)) != null) {
-                                ?>
+                        <div class="col-sm-8">
+                            <select class="form-select" name="semirremolque">
+                                <?php while (($res1 = mysqli_fetch_assoc($veTipo2)) != null) {
+                                    $validador = 1;
+                                    ?>
 
-                                <option value="<?php echo $res1['s_id'] ?> "><?php echo $res1['s_patente'] ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                                    <option value="<?php echo $res1['s_id'] ?> "><?php echo $res1['s_patente'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
+            <?php if ($validador == 0) {
+                ?>
 
+                <div class="alert  alert-danger" role="alert">
+                    <b> No se encuentran semiremolques para este tipo de checklist.</b>
+                </div>
+
+                <?php
+            } ?>
 
         </div>
         <table class=" table table-striped table-bordered
@@ -108,31 +119,34 @@ from formulario;")->fetch_assoc();
 
             </tr>
             <tr>
-                <?php  $encaezao = $titulo["a_articulo"];
-                if($encaezao== 'BATEA') { ?>
-                    <th scope="col" colspan="5">VERIFICACIÓN DE PARTES CRITICAS DE SEMIREMOLQUE BATEA PARA EVITAR LA CAIDA DE CAGA / FATIGA
-                        DE MATERIALES / DAÑOS ESTRUCTURALES </th>
+                <?php $encaezao = $titulo["a_articulo"];
+                if ($encaezao == 'BATEA') { ?>
+                    <th scope="col" colspan="5">VERIFICACIÓN DE PARTES CRITICAS DE SEMIREMOLQUE BATEA PARA EVITAR LA
+                        CAIDA DE CAGA / FATIGA
+                        DE MATERIALES / DAÑOS ESTRUCTURALES
+                    </th>
                 <?php } ?>
-                <?php if($encaezao == 'CAMA BAJA') { ?>
+                <?php if ($encaezao == 'CAMA BAJA') { ?>
                     <th scope="col" colspan="5">VERIFICACIÓN DE PARTES CRITICAS DE SEMIREMOLQUE CAMA BAJA PARA
                         RETENER /
                         EVITAR LA CAIDA DE CARGA O PARTE DE SUS ESTRUCTURAS
                     </th>
                 <?php } ?>
-                <?php if($encaezao == 'ESTIBA') { ?>
+                <?php if ($encaezao == 'ESTIBA') { ?>
                     <th scope="col" colspan="5">VERIFICACIÓN DE PARTES CRITICAS DE SEMIREMOLQUE CAMA BAJA PARA
                         RETENER /
                         EVITAR LA CAIDA DE CARGA O PARTE DE SUS ESTRUCTURAS
                     </th>
                 <?php } ?>
-                <?php if($encaezao == 'RAMPLAS') { ?>
+                <?php if ($encaezao == 'RAMPLAS') { ?>
                     <th scope="col" colspan="5">VERIFICACIÓN DE PARTES CRITICAS DE SEMIREMOLQUE QUE PERMITEN
                         RETENER /
                         EVITAR LA CAIDA DE CARGA O PARTE DE SUS ESTRUCTURAS
                     </th>
                 <?php } ?>
-                <?php if($encaezao == 'ELEMENTOS AMARRE') { ?>
-                    <th scope="col" colspan="5">VERIFICACIÓN DE ELEMENTOS DE AMARRE DE CARGA Y ACCESORIOS ANEXOS (GANCHOS/TRINQUETES)
+                <?php if ($encaezao == 'ELEMENTOS AMARRE') { ?>
+                    <th scope="col" colspan="5">VERIFICACIÓN DE ELEMENTOS DE AMARRE DE CARGA Y ACCESORIOS ANEXOS
+                        (GANCHOS/TRINQUETES)
                     </th>
                 <?php } ?>
             </tr>
@@ -212,7 +226,16 @@ from formulario;")->fetch_assoc();
         </table>
         <div class="row">
             <div class=" float-end">
-                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                <?php if ($validador === 0) {
+                    ?>
+                    <button type="submit" disabled class="btn btn-secondary btn-lg">Enviar</button>
+                    <?php
+                } else {
+                    ?>
+                    <button type="submit"  class="btn btn-primary btn-lg">Enviar</button>
+                    <?php
+                } ?>
+
             </div>
         </div>
         <?php

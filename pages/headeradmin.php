@@ -36,7 +36,7 @@ $a_tipo = $conexionVar->select("select a_id,a_articulo from articulo");
                         while (($response = mysqli_fetch_assoc($a_tipo)) != null) {
                             ?>
                             <li>
-                                <form action="../checklist/CheckListAdd.php" method="post">
+                                <form action="CheckListAdd.php" method="post">
                                     <button type="submit" name="a_id" value="<?php echo $response["a_id"] ?>"
                                             class="dropdown-item"><?php echo $response["a_articulo"] ?></button>
                             <li><hr class="dropdown-divider"></li>

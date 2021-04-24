@@ -32,6 +32,7 @@ $camabaja = ($cone->select("SELECT p_id, p_titulo, p_tipo,a_articulo from pregun
 $titulo = $cone->select("select a_articulo  from articulo where a_id = $id")->fetch_assoc();
 $veTipo = $cone->select("select v_id, v_patente from vehiculo where v_estado = 1");
 $veTipo2 = $cone->select("select s_id, s_patente from semiremolque where s_estado = 1 and s_tipo = '" . $titulo["a_articulo"] . "'");
+$veTipo3 = $cone->select("select s_id, s_patente from semiremolque where s_estado = 1");
 $idFormularo = $cone->select("select CASE WHEN (max(f_id)+1) = 0 THEN 1
     ELSE max(f_id)+1
 END
@@ -86,12 +87,23 @@ from formulario;")->fetch_assoc();
 
                         <div class="col-sm-8">
                             <select class="form-select" name="semirremolque">
-                                <?php while (($res1 = mysqli_fetch_assoc($veTipo2)) != null) {
+                                <?php $articulo =$titulo["a_articulo"];
+                                 if ($articulo == 'ELEMENTOS AMARRE'){
+                                while (($res1 = mysqli_fetch_assoc($veTipo3)) != null) {
                                     $validador = 1;
                                     ?>
 
                                     <option value="<?php echo $res1['s_id'] ?> "><?php echo $res1['s_patente'] ?></option>
-                                <?php } ?>
+                                <?php }} else {
+                                    while (($res1 = mysqli_fetch_assoc($veTipo2)) != null) {
+                                        $validador = 1;
+                                        ?>
+                                        <option value="<?php echo $res1['s_id'] ?> "><?php echo $res1['s_patente'] ?></option>
+                                        <?php
+                                    }
+                                }
+
+                                ?>
                             </select>
                         </div>
                     </div>

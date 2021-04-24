@@ -389,6 +389,8 @@ INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (3, 'Grave');
 INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (4, 'Peligrosa');
 INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (5, 'Si');
 INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (6, 'No');
+INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (7, 'Operativo');
+INSERT INTO `respuesta` (`r_id`, `r_respuesta`) VALUES (8, 'No Operativo');
 
 COMMIT;
 

@@ -48,7 +48,7 @@ where f.f_id = shv.formulario_f_id and s_patente like'$pat' and shv.semiremolque
         $contador = 0;
         while (($res = mysqli_fetch_assoc($busqueda)) != null) {
            $preguntas = $cone->select("select u_nombre,p_titulo, r_respuesta from formulario f, formulario_has_pregunta fp, pregunta p , respuesta r, usuario u 
-            where u.u_id=f.u_id and f.f_id = fp.formulario_f_id and  p.p_id = fp.preguntas_p_id and r.r_id = fp.respuesta_r_id and f_id=" . $res["f_id"] . ";");
+            where u.u_id=f.u_id and f.f_id = fp.formulario_f_id and  p.p_id = fp.preguntas_p_id and r.r_id = fp.respuesta_r_id and f_id=" . $res["f_id"] . ";" );
             ?>
             <div class="card shadow  text-dark bg-light col-sm-4  mx-3 my-2">
                 <div class="card-header m-0">

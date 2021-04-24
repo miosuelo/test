@@ -82,5 +82,3 @@ function rut($rut_param)
 echo json_encode($json)
 
 ?>
-
-
